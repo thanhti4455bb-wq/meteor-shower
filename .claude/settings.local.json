@@ -5,7 +5,8 @@
       "Bash(git add .)",
       "Bash(git commit -m \"Initial commit: Meteor Shower 2025 landing page\")",
       "Bash(git config user.email \"meteor@example.com\")",
-      "Bash(git config user.name \"Meteor Shower\")"
+      "Bash(git config user.name \"Meteor Shower\")",
+      "Bash(git commit -m \"Update: Enhanced meteor shower background effects\" --allow-empty)"
     ]
   }
 }
