@@ -1237,7 +1237,7 @@
 
         <div class="hero-content container">
             <!-- Live indicator -->
-            <span class="live-badge">-361 Days Until Peak</span>
+            <span class="live-badge">4 Days Until Peak</span>
 
             <p class="hero-subtitle">The Best Meteor Shower of 2025</p>
             <h1>Geminid Meteor Shower<br>Peak Tonight!</h1>
@@ -1691,6 +1691,152 @@
     </footer>
 
     <script>
+        // Dynamic Content Loading from JSON
+        async function loadMeteorData() {
+            try {
+                const response = await fetch('data/meteor-showers.json');
+                const data = await response.json();
+                updateHeroContent(data);
+            } catch (error) {
+                console.log('Using static content - JSON not available');
+            }
+        }
+
+        function updateHeroContent(data) {
+            const shower = data.currentShower;
+            const status = data.currentStatus;
+            const daysUntil = data.daysUntilPeak;
+
+            // Update badge
+            const badge = document.querySelector('.live-badge');
+            if (badge) {
+                if (status === 'active') {
+                    badge.textContent = 'Live Event - Happening Now';
+                    badge.style.background = 'linear-gradient(135deg, #ef4444, #dc2626)';
+                } else if (daysUntil <= 7) {
+                    badge.textContent = `${daysUntil} Days Until Peak`;
+                    badge.style.background = 'linear-gradient(135deg, #f59e0b, #d97706)';
+                } else {
+                    const peakDate = formatPeakDateJS(shower.peakStart, shower.peakEnd);
+                    badge.textContent = `Next Event: ${peakDate}`;
+                    badge.style.background = 'linear-gradient(135deg, #6366f1, #4f46e5)';
+                }
+            }
+
+            // Update hero subtitle
+            const subtitle = document.querySelector('.hero-subtitle');
+            if (subtitle) {
+                const year = new Date(shower.peakStart).getFullYear();
+                if (status === 'active') {
+                    subtitle.textContent = `The Best Meteor Shower of ${year}`;
+                } else if (daysUntil <= 7) {
+                    subtitle.textContent = 'Coming This Week';
+                } else {
+                    subtitle.textContent = `${daysUntil} Days Away`;
+                }
+            }
+
+            // Update hero title
+            const heroTitle = document.querySelector('.hero h1');
+            if (heroTitle) {
+                const peakDate = formatPeakDateJS(shower.peakStart, shower.peakEnd);
+                if (status === 'active') {
+                    heroTitle.innerHTML = `${shower.name} Meteor Shower<br>Peak Tonight!`;
+                } else if (daysUntil <= 7) {
+                    heroTitle.innerHTML = `${shower.name} Meteor Shower<br>Peaks ${peakDate}`;
+                } else {
+                    heroTitle.innerHTML = `${shower.name} Meteor Shower<br>Coming Soon`;
+                }
+            }
+
+            // Update hero description
+            const heroDesc = document.querySelector('.hero-content > p:not(.hero-subtitle)');
+            if (heroDesc) {
+                const peakDate = formatPeakDateJS(shower.peakStart, shower.peakEnd);
+                if (status === 'active') {
+                    heroDesc.innerHTML = `Up to <strong>${shower.zhr} meteors per hour</strong> visible tonight (${peakDate}). ${shower.moonPhase.includes('Excellent') ? 'Near-perfect viewing conditions. ' : ''}${shower.isFeatured ? "This is the #1 meteor shower - don't miss it!" : "A great opportunity to see shooting stars!"}`;
+                } else {
+                    heroDesc.innerHTML = `Get ready for up to <strong>${shower.zhr} meteors per hour</strong> on ${peakDate}. ${shower.moonPhase.includes('Excellent') ? 'Excellent viewing conditions expected. ' : ''}Mark your calendar!`;
+                }
+            }
+
+            // Update countdown stats
+            const countdownNumbers = document.querySelectorAll('.countdown-number');
+            if (countdownNumbers.length >= 4) {
+                countdownNumbers[0].textContent = shower.zhrMax;
+                const moonMatch = shower.moonPhase.match(/(\d+)%/);
+                countdownNumbers[1].textContent = moonMatch ? moonMatch[1] + '%' : 'Good';
+                countdownNumbers[2].textContent = '10PM';
+                countdownNumbers[3].textContent = getRadiantDirection(shower.name);
+            }
+
+            // Update quick info cards
+            const quickInfoCards = document.querySelectorAll('.quick-info-card');
+            if (quickInfoCards.length >= 3) {
+                const peakDate = formatPeakDateJS(shower.peakStart, shower.peakEnd);
+                const year = new Date(shower.peakStart).getFullYear();
+
+                // When to Watch
+                const whenCard = quickInfoCards[0].querySelector('p');
+                if (whenCard) {
+                    if (status === 'active') {
+                        whenCard.innerHTML = `<span class="highlight-text">Tonight, ${peakDate}</span><br>Best viewing: 10 PM - 2 AM local time<br>Peak intensity around 2 AM`;
+                    } else {
+                        whenCard.innerHTML = `<span class="highlight-text">${peakDate}, ${year}</span><br>Best viewing: 10 PM - 2 AM local time<br>${daysUntil} days from now`;
+                    }
+                }
+
+                // Expected Rate
+                const rateCard = quickInfoCards[2].querySelector('p');
+                if (rateCard) {
+                    rateCard.innerHTML = `<span class="highlight-text">${shower.zhr}/hour</span><br>Dark skies: ${Math.round(shower.zhrMax * 0.8)}-${shower.zhrMax} meteors<br>Suburban: ${Math.round(shower.zhrMax * 0.2)}-${Math.round(shower.zhrMax * 0.4)} meteors`;
+                }
+            }
+
+            // Update weather alert based on moon phase
+            const weatherAlert = document.querySelector('.weather-alert');
+            if (weatherAlert) {
+                const alertText = weatherAlert.querySelector('span:last-child');
+                if (alertText) {
+                    if (shower.moonPhase.includes('Excellent')) {
+                        alertText.innerHTML = `<strong>Excellent conditions!</strong> ${shower.moonPhase} - minimal light interference expected.`;
+                        weatherAlert.classList.add('good');
+                    } else if (shower.moonPhase.includes('Good')) {
+                        alertText.innerHTML = `<strong>Good conditions!</strong> ${shower.moonPhase} - reasonable viewing expected.`;
+                    } else {
+                        alertText.innerHTML = `<strong>Variable conditions.</strong> ${shower.moonPhase} - check local moon times.`;
+                    }
+                }
+            }
+        }
+
+        function formatPeakDateJS(start, end) {
+            const startDate = new Date(start);
+            const endDate = new Date(end);
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+            if (start === end) {
+                return `${months[startDate.getMonth()]} ${startDate.getDate()}`;
+            }
+            return `${months[startDate.getMonth()]} ${startDate.getDate()}-${endDate.getDate()}`;
+        }
+
+        function getRadiantDirection(showerName) {
+            const directions = {
+                'Quadrantids': 'NE',
+                'Lyrids': 'East',
+                'Eta Aquariids': 'SE',
+                'Perseids': 'NE',
+                'Orionids': 'East',
+                'Leonids': 'East',
+                'Geminids': 'East',
+                'Ursids': 'North'
+            };
+            return directions[showerName] || 'East';
+        }
+
+        // Load meteor data on page load
+        loadMeteorData();
+
         // FAQ Accordion
         document.querySelectorAll('.faq-question').forEach(question => {
             question.addEventListener('click', () => {

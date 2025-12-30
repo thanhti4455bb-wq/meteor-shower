@@ -1,18 +1,18 @@
 {
-  "lastUpdated": "2025-12-30T03:54:50.874Z",
+  "lastUpdated": "2025-12-30T16:25:17.856Z",
   "currentShower": {
     "name": "Quadrantids",
     "nameCn": "象限仪座",
-    "peakStart": "2025-01-03",
-    "peakEnd": "2025-01-04",
+    "peakStart": "2026-01-03",
+    "peakEnd": "2026-01-04",
     "zhr": "80-120",
     "zhrMax": 120,
-    "moonPhase": "Fair (Waxing Crescent)",
+    "moonPhase": "Good (Waxing Gibbous)",
     "parentBody": "Asteroid 2003 EH1",
     "wikiLink": "https://en.wikipedia.org/wiki/Quadrantids"
   },
-  "currentStatus": "next_year",
-  "daysUntilPeak": -361,
+  "currentStatus": "upcoming",
+  "daysUntilPeak": 4,
   "allShowers": [
     {
       "name": "Quadrantids",
@@ -118,6 +118,112 @@
       "wikiLink": "https://en.wikipedia.org/wiki/Ursids",
       "peakFormatted": "Dec 21-22",
       "daysUntil": -9
+    },
+    {
+      "name": "Quadrantids",
+      "nameCn": "象限仪座",
+      "peakStart": "2026-01-03",
+      "peakEnd": "2026-01-04",
+      "zhr": "80-120",
+      "zhrMax": 120,
+      "moonPhase": "Good (Waxing Gibbous)",
+      "parentBody": "Asteroid 2003 EH1",
+      "wikiLink": "https://en.wikipedia.org/wiki/Quadrantids",
+      "peakFormatted": "Jan 3-4",
+      "daysUntil": 4
+    },
+    {
+      "name": "Lyrids",
+      "nameCn": "天琴座",
+      "peakStart": "2026-04-22",
+      "peakEnd": "2026-04-23",
+      "zhr": "18",
+      "zhrMax": 18,
+      "moonPhase": "Excellent (New Moon)",
+      "parentBody": "Comet Thatcher",
+      "wikiLink": "https://en.wikipedia.org/wiki/Lyrids",
+      "peakFormatted": "Apr 22-23",
+      "daysUntil": 113
+    },
+    {
+      "name": "Eta Aquariids",
+      "nameCn": "宝瓶座η",
+      "peakStart": "2026-05-05",
+      "peakEnd": "2026-05-06",
+      "zhr": "50",
+      "zhrMax": 50,
+      "moonPhase": "Good (Waning Gibbous)",
+      "parentBody": "Comet Halley",
+      "wikiLink": "https://en.wikipedia.org/wiki/Eta_Aquariids",
+      "peakFormatted": "May 5-6",
+      "daysUntil": 126
+    },
+    {
+      "name": "Perseids",
+      "nameCn": "英仙座",
+      "peakStart": "2026-08-12",
+      "peakEnd": "2026-08-13",
+      "zhr": "100",
+      "zhrMax": 100,
+      "moonPhase": "Excellent (New Moon)",
+      "parentBody": "Comet Swift-Tuttle",
+      "wikiLink": "https://en.wikipedia.org/wiki/Perseids",
+      "isFeatured": true,
+      "peakFormatted": "Aug 12-13",
+      "daysUntil": 225
+    },
+    {
+      "name": "Orionids",
+      "nameCn": "猎户座",
+      "peakStart": "2026-10-21",
+      "peakEnd": "2026-10-22",
+      "zhr": "20",
+      "zhrMax": 20,
+      "moonPhase": "Good (First Quarter)",
+      "parentBody": "Comet Halley",
+      "wikiLink": "https://en.wikipedia.org/wiki/Orionids",
+      "peakFormatted": "Oct 21-22",
+      "daysUntil": 295
+    },
+    {
+      "name": "Leonids",
+      "nameCn": "狮子座",
+      "peakStart": "2026-11-17",
+      "peakEnd": "2026-11-18",
+      "zhr": "15",
+      "zhrMax": 15,
+      "moonPhase": "Excellent (New Moon)",
+      "parentBody": "Comet Tempel-Tuttle",
+      "wikiLink": "https://en.wikipedia.org/wiki/Leonids",
+      "peakFormatted": "Nov 17-18",
+      "daysUntil": 322
+    },
+    {
+      "name": "Geminids",
+      "nameCn": "双子座",
+      "peakStart": "2026-12-13",
+      "peakEnd": "2026-12-14",
+      "zhr": "150",
+      "zhrMax": 150,
+      "moonPhase": "Good (Waxing Crescent)",
+      "parentBody": "Asteroid 3200 Phaethon",
+      "wikiLink": "https://en.wikipedia.org/wiki/Geminids",
+      "isFeatured": true,
+      "peakFormatted": "Dec 13-14",
+      "daysUntil": 348
+    },
+    {
+      "name": "Ursids",
+      "nameCn": "小熊座",
+      "peakStart": "2026-12-22",
+      "peakEnd": "2026-12-23",
+      "zhr": "10",
+      "zhrMax": 10,
+      "moonPhase": "Excellent (Waxing Crescent)",
+      "parentBody": "Comet 8P/Tuttle",
+      "wikiLink": "https://en.wikipedia.org/wiki/Ursids",
+      "peakFormatted": "Dec 22-23",
+      "daysUntil": 357
     }
   ]
 }

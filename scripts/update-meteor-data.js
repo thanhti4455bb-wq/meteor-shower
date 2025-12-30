@@ -6,8 +6,9 @@
 const fs = require('fs');
 const path = require('path');
 
-// 2025年流星雨日历数据
-const meteorShowers2025 = [
+// 流星雨日历数据（包含2025年剩余和2026年）
+const meteorShowers = [
+    // 2025年流星雨
     {
         name: "Quadrantids",
         nameCn: "象限仪座",
@@ -96,6 +97,97 @@ const meteorShowers2025 = [
         moonPhase: "Excellent (6% Moon)",
         parentBody: "Comet 8P/Tuttle",
         wikiLink: "https://en.wikipedia.org/wiki/Ursids"
+    },
+    // 2026年流星雨
+    {
+        name: "Quadrantids",
+        nameCn: "象限仪座",
+        peakStart: "2026-01-03",
+        peakEnd: "2026-01-04",
+        zhr: "80-120",
+        zhrMax: 120,
+        moonPhase: "Good (Waxing Gibbous)",
+        parentBody: "Asteroid 2003 EH1",
+        wikiLink: "https://en.wikipedia.org/wiki/Quadrantids"
+    },
+    {
+        name: "Lyrids",
+        nameCn: "天琴座",
+        peakStart: "2026-04-22",
+        peakEnd: "2026-04-23",
+        zhr: "18",
+        zhrMax: 18,
+        moonPhase: "Excellent (New Moon)",
+        parentBody: "Comet Thatcher",
+        wikiLink: "https://en.wikipedia.org/wiki/Lyrids"
+    },
+    {
+        name: "Eta Aquariids",
+        nameCn: "宝瓶座η",
+        peakStart: "2026-05-05",
+        peakEnd: "2026-05-06",
+        zhr: "50",
+        zhrMax: 50,
+        moonPhase: "Good (Waning Gibbous)",
+        parentBody: "Comet Halley",
+        wikiLink: "https://en.wikipedia.org/wiki/Eta_Aquariids"
+    },
+    {
+        name: "Perseids",
+        nameCn: "英仙座",
+        peakStart: "2026-08-12",
+        peakEnd: "2026-08-13",
+        zhr: "100",
+        zhrMax: 100,
+        moonPhase: "Excellent (New Moon)",
+        parentBody: "Comet Swift-Tuttle",
+        wikiLink: "https://en.wikipedia.org/wiki/Perseids",
+        isFeatured: true
+    },
+    {
+        name: "Orionids",
+        nameCn: "猎户座",
+        peakStart: "2026-10-21",
+        peakEnd: "2026-10-22",
+        zhr: "20",
+        zhrMax: 20,
+        moonPhase: "Good (First Quarter)",
+        parentBody: "Comet Halley",
+        wikiLink: "https://en.wikipedia.org/wiki/Orionids"
+    },
+    {
+        name: "Leonids",
+        nameCn: "狮子座",
+        peakStart: "2026-11-17",
+        peakEnd: "2026-11-18",
+        zhr: "15",
+        zhrMax: 15,
+        moonPhase: "Excellent (New Moon)",
+        parentBody: "Comet Tempel-Tuttle",
+        wikiLink: "https://en.wikipedia.org/wiki/Leonids"
+    },
+    {
+        name: "Geminids",
+        nameCn: "双子座",
+        peakStart: "2026-12-13",
+        peakEnd: "2026-12-14",
+        zhr: "150",
+        zhrMax: 150,
+        moonPhase: "Good (Waxing Crescent)",
+        parentBody: "Asteroid 3200 Phaethon",
+        wikiLink: "https://en.wikipedia.org/wiki/Geminids",
+        isFeatured: true
+    },
+    {
+        name: "Ursids",
+        nameCn: "小熊座",
+        peakStart: "2026-12-22",
+        peakEnd: "2026-12-23",
+        zhr: "10",
+        zhrMax: 10,
+        moonPhase: "Excellent (Waxing Crescent)",
+        parentBody: "Comet 8P/Tuttle",
+        wikiLink: "https://en.wikipedia.org/wiki/Ursids"
     }
 ];
 
@@ -107,7 +199,7 @@ function getCurrentOrNextShower() {
     today.setHours(0, 0, 0, 0);
 
     // 首先检查是否有正在进行的流星雨
-    for (const shower of meteorShowers2025) {
+    for (const shower of meteorShowers) {
         const start = new Date(shower.peakStart);
         const end = new Date(shower.peakEnd);
         end.setDate(end.getDate() + 1); // 包含结束日
@@ -118,15 +210,15 @@ function getCurrentOrNextShower() {
     }
 
     // 查找下一个流星雨
-    for (const shower of meteorShowers2025) {
+    for (const shower of meteorShowers) {
         const start = new Date(shower.peakStart);
         if (start > today) {
             return { shower, status: 'upcoming' };
         }
     }
 
-    // 如果今年没有更多流星雨，返回明年第一个
-    return { shower: meteorShowers2025[0], status: 'next_year' };
+    // 如果没有更多流星雨，返回列表第一个（未来年份的）
+    return { shower: meteorShowers[0], status: 'next_year' };
 }
 
 /**
@@ -243,7 +335,7 @@ function generateDataJson() {
         currentShower: current.shower,
         currentStatus: current.status,
         daysUntilPeak: getDaysUntil(current.shower.peakStart),
-        allShowers: meteorShowers2025.map(shower => ({
+        allShowers: meteorShowers.map(shower => ({
             ...shower,
             peakFormatted: formatPeakDate(shower.peakStart, shower.peakEnd),
             daysUntil: getDaysUntil(shower.peakStart)
