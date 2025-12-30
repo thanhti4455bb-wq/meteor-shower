@@ -1808,6 +1808,111 @@
                     }
                 }
             }
+
+            // Update Geminids section (or current featured shower section)
+            updateFeaturedShowerSection(shower, status, daysUntil);
+
+            // Update Calendar section
+            updateCalendarSection(data.allShowers);
+        }
+
+        function updateFeaturedShowerSection(shower, status, daysUntil) {
+            const geminidsSection = document.querySelector('.geminids');
+            if (!geminidsSection) return;
+
+            const year = new Date(shower.peakStart).getFullYear();
+            const peakDate = formatPeakDateJS(shower.peakStart, shower.peakEnd);
+
+            // Update section title
+            const sectionTitle = geminidsSection.querySelector('.section-title h2');
+            if (sectionTitle) {
+                sectionTitle.innerHTML = `🌠 ${shower.name} Meteor Shower ${year}`;
+            }
+
+            const sectionSubtitle = geminidsSection.querySelector('.section-title p');
+            if (sectionSubtitle) {
+                if (status === 'active') {
+                    sectionSubtitle.textContent = 'The most spectacular meteor shower is happening NOW!';
+                } else if (daysUntil <= 7) {
+                    sectionSubtitle.textContent = `Coming this week - ${peakDate}!`;
+                } else {
+                    sectionSubtitle.textContent = `Mark your calendar for ${peakDate}!`;
+                }
+            }
+
+            // Update highlight box
+            const highlightTitle = geminidsSection.querySelector('.highlight-box h3');
+            if (highlightTitle) {
+                highlightTitle.textContent = `Why ${year} ${shower.name} ${daysUntil <= 7 ? 'Will Be' : 'Are'} Special`;
+            }
+
+            const highlightDesc = geminidsSection.querySelector('.highlight-box > p');
+            if (highlightDesc) {
+                const moonPercent = shower.moonPhase.match(/(\d+)%/);
+                const moonText = moonPercent ? `${moonPercent[1]}%` : 'low';
+
+                if (status === 'active') {
+                    highlightDesc.textContent = `The ${year} ${shower.name} meteor shower is happening right now with ${shower.moonPhase.toLowerCase()} conditions. With the Moon at only ${moonText} illumination, moonlight interference is minimal. This is a perfect opportunity to witness this spectacular display!`;
+                } else {
+                    highlightDesc.textContent = `The ${year} ${shower.name} meteor shower offers ${shower.moonPhase.toLowerCase()} viewing conditions. With the Moon at only ${moonText} illumination during the peak, moonlight interference will be minimal. This is one of the best opportunities in recent years to witness this spectacular display!`;
+                }
+            }
+
+            // Update stats
+            const statNumbers = geminidsSection.querySelectorAll('.stat-item .stat-number');
+            if (statNumbers.length >= 4) {
+                statNumbers[0].textContent = shower.zhrMax;
+                statNumbers[1].textContent = peakDate;
+                const moonMatch = shower.moonPhase.match(/(\d+)%/);
+                statNumbers[2].textContent = moonMatch ? `${moonMatch[1]}%` : 'Low';
+                statNumbers[3].textContent = status === 'active' ? 'NOW' : `${daysUntil}d`;
+            }
+
+            const statLabels = geminidsSection.querySelectorAll('.stat-item .stat-label');
+            if (statLabels.length >= 4) {
+                statLabels[1].textContent = `Peak Night ${year}`;
+                statLabels[3].textContent = status === 'active' ? 'Status' : 'Countdown';
+            }
+        }
+
+        function updateCalendarSection(allShowers) {
+            const calendarSection = document.querySelector('.calendar');
+            if (!calendarSection) return;
+
+            // Determine year range
+            const years = [...new Set(allShowers.map(s => new Date(s.peakStart).getFullYear()))];
+            const yearRange = years.length > 1 ? `${Math.min(...years)}-${Math.max(...years)}` : years[0];
+
+            // Update calendar title
+            const calendarTitle = calendarSection.querySelector('.section-title h2');
+            if (calendarTitle) {
+                calendarTitle.textContent = `${yearRange} Meteor Shower Calendar`;
+            }
+
+            // Update table body
+            const tbody = calendarSection.querySelector('.meteor-table tbody');
+            if (!tbody) return;
+
+            tbody.innerHTML = allShowers.map(shower => {
+                const year = new Date(shower.peakStart).getFullYear();
+                const isFeatured = shower.isFeatured;
+                const icon = isFeatured ? '⭐' : '';
+
+                return `
+                    <tr${isFeatured ? ' class="featured"' : ''}>
+                        <td><a href="${shower.wikiLink}" target="_blank">${icon} ${shower.name}</a></td>
+                        <td>${shower.peakFormatted}</td>
+                        <td>
+                            ${shower.zhr}
+                            <div class="rate-bar">
+                                <div class="rate-fill" style="width: ${Math.min(shower.zhrMax / 150 * 100, 100)}%"></div>
+                            </div>
+                        </td>
+                        <td>${shower.moonPhase}</td>
+                        <td>${shower.parentBody}</td>
+                    </tr>
+                `.trim();
+            }).join('');
         }
 
         function formatPeakDateJS(start, end) {
