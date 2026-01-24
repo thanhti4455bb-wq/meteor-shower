@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-01-23T01:23:47.235Z",
+  "lastUpdated": "2026-01-24T01:21:47.364Z",
   "currentShower": {
     "name": "Lyrids",
     "nameCn": "天琴座",
@@ -12,7 +12,7 @@
     "wikiLink": "https://en.wikipedia.org/wiki/Lyrids"
   },
   "currentStatus": "upcoming",
-  "daysUntilPeak": 89,
+  "daysUntilPeak": 88,
   "allShowers": [
     {
       "name": "Quadrantids",
@@ -25,7 +25,7 @@
       "parentBody": "Asteroid 2003 EH1",
       "wikiLink": "https://en.wikipedia.org/wiki/Quadrantids",
       "peakFormatted": "Jan 3-4",
-      "daysUntil": -385
+      "daysUntil": -386
     },
     {
       "name": "Lyrids",
@@ -38,7 +38,7 @@
       "parentBody": "Comet Thatcher",
       "wikiLink": "https://en.wikipedia.org/wiki/Lyrids",
       "peakFormatted": "Apr 22",
-      "daysUntil": -276
+      "daysUntil": -277
     },
     {
       "name": "Eta Aquariids",
@@ -51,7 +51,7 @@
       "parentBody": "Comet Halley",
       "wikiLink": "https://en.wikipedia.org/wiki/Eta_Aquariids",
       "peakFormatted": "May 6",
-      "daysUntil": -262
+      "daysUntil": -263
     },
     {
       "name": "Perseids",
@@ -64,7 +64,7 @@
       "parentBody": "Comet Swift-Tuttle",
       "wikiLink": "https://en.wikipedia.org/wiki/Perseids",
       "peakFormatted": "Aug 12-13",
-      "daysUntil": -164
+      "daysUntil": -165
     },
     {
       "name": "Orionids",
@@ -77,7 +77,7 @@
       "parentBody": "Comet Halley",
       "wikiLink": "https://en.wikipedia.org/wiki/Orionids",
       "peakFormatted": "Oct 21",
-      "daysUntil": -94
+      "daysUntil": -95
     },
     {
       "name": "Leonids",
@@ -90,7 +90,7 @@
       "parentBody": "Comet Tempel-Tuttle",
       "wikiLink": "https://en.wikipedia.org/wiki/Leonids",
       "peakFormatted": "Nov 17-18",
-      "daysUntil": -67
+      "daysUntil": -68
     },
     {
       "name": "Geminids",
@@ -104,7 +104,7 @@
       "wikiLink": "https://en.wikipedia.org/wiki/Geminids",
       "isFeatured": true,
       "peakFormatted": "Dec 13-14",
-      "daysUntil": -41
+      "daysUntil": -42
     },
     {
       "name": "Ursids",
@@ -117,7 +117,7 @@
       "parentBody": "Comet 8P/Tuttle",
       "wikiLink": "https://en.wikipedia.org/wiki/Ursids",
       "peakFormatted": "Dec 21-22",
-      "daysUntil": -33
+      "daysUntil": -34
     },
     {
       "name": "Quadrantids",
@@ -130,7 +130,7 @@
       "parentBody": "Asteroid 2003 EH1",
       "wikiLink": "https://en.wikipedia.org/wiki/Quadrantids",
       "peakFormatted": "Jan 3-4",
-      "daysUntil": -20
+      "daysUntil": -21
     },
     {
       "name": "Lyrids",
@@ -143,7 +143,7 @@
       "parentBody": "Comet Thatcher",
       "wikiLink": "https://en.wikipedia.org/wiki/Lyrids",
       "peakFormatted": "Apr 22-23",
-      "daysUntil": 89
+      "daysUntil": 88
     },
     {
       "name": "Eta Aquariids",
@@ -156,7 +156,7 @@
       "parentBody": "Comet Halley",
       "wikiLink": "https://en.wikipedia.org/wiki/Eta_Aquariids",
       "peakFormatted": "May 5-6",
-      "daysUntil": 102
+      "daysUntil": 101
     },
     {
       "name": "Perseids",
@@ -170,7 +170,7 @@
       "wikiLink": "https://en.wikipedia.org/wiki/Perseids",
       "isFeatured": true,
       "peakFormatted": "Aug 12-13",
-      "daysUntil": 201
+      "daysUntil": 200
     },
     {
       "name": "Orionids",
@@ -183,7 +183,7 @@
       "parentBody": "Comet Halley",
       "wikiLink": "https://en.wikipedia.org/wiki/Orionids",
       "peakFormatted": "Oct 21-22",
-      "daysUntil": 271
+      "daysUntil": 270
     },
     {
       "name": "Leonids",
@@ -196,7 +196,7 @@
       "parentBody": "Comet Tempel-Tuttle",
       "wikiLink": "https://en.wikipedia.org/wiki/Leonids",
       "peakFormatted": "Nov 17-18",
-      "daysUntil": 298
+      "daysUntil": 297
     },
     {
       "name": "Geminids",
@@ -210,7 +210,7 @@
       "wikiLink": "https://en.wikipedia.org/wiki/Geminids",
       "isFeatured": true,
       "peakFormatted": "Dec 13-14",
-      "daysUntil": 324
+      "daysUntil": 323
     },
     {
       "name": "Ursids",
@@ -223,7 +223,7 @@
       "parentBody": "Comet 8P/Tuttle",
       "wikiLink": "https://en.wikipedia.org/wiki/Ursids",
       "peakFormatted": "Dec 22-23",
-      "daysUntil": 333
+      "daysUntil": 332
     }
   ]
 }
